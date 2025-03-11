@@ -5,7 +5,7 @@ import com.geotrip.authservice.dtos.LoginRequestDto;
 import com.geotrip.authservice.dtos.RegisterDriverRequestDto;
 import com.geotrip.authservice.dtos.RegisterPassengerRequestDto;
 import com.geotrip.authservice.dtos.UserDto;
-import com.geotrip.authservice.services.AuthServiceImpl;
+import com.geotrip.authservice.services.AuthService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class AuthController {
 
-    private final AuthServiceImpl authService;
+    private final AuthService authService;
 
     @PostMapping("/register/driver")
     public ResponseEntity<String> registerDriver(@RequestBody @Valid RegisterDriverRequestDto registerDriverRequestDto) {
