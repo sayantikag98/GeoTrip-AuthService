@@ -51,7 +51,7 @@ public class JwtServiceImpl implements JwtService {
 
     /**
      * Checks whether the given token has expired or not
-     * @param token
+     * @param token Bearer token passed in the Authorization header
      * @return true if the token has expired otherwise false
      */
     public boolean isTokenExpired(String token) {

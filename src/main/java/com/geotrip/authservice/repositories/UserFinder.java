@@ -2,7 +2,6 @@ package com.geotrip.authservice.repositories;
 
 import com.geotrip.entityservice.models.Role;
 import com.geotrip.entityservice.models.User;
-import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Optional;
 

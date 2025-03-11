@@ -3,7 +3,7 @@ package com.geotrip.authservice.services;
 
 import com.geotrip.authservice.repositories.UserFinder;
 import com.geotrip.entityservice.models.Role;
-import jakarta.annotation.PostConstruct;
+//import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
