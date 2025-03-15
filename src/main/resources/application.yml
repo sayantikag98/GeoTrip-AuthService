@@ -34,3 +34,5 @@ eureka:
 jwt:
   secret: ${GEOTRIP_SECRET_KEY}
 
+env: dev
+

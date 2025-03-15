@@ -14,6 +14,6 @@ public interface JwtService {
 
     boolean isTokenExpired(String token);
 
-    String generateToken(String email, Role role);
+    String generateToken(String email, Role role, Long expirationTime);
 }
 

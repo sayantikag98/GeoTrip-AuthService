@@ -18,9 +18,6 @@ public class JwtServiceImpl implements JwtService {
     private String SECRET_KEY;
 
 
-    private static final long EXPIRATION_TIME = 1000 * 60 * 60 * 10;
-
-
     public String extractEmail(String token) {
         return extractClaim(token, Claims::getSubject);
     }
@@ -58,12 +55,12 @@ public class JwtServiceImpl implements JwtService {
         return extractExpiration(token).toInstant().isBefore(new Date().toInstant());
     }
 
-    public String generateToken(String email, Role role) {
+    public String generateToken(String email, Role role, Long expirationTime) {
         return Jwts.builder()
                 .subject(email)
                 .claims(Map.of("role", role.name()))
                 .issuedAt(new Date())
-                .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .expiration(new Date(System.currentTimeMillis() + expirationTime * 1000))
                 .signWith(getSignKey())
                 .compact();
     }

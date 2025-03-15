@@ -2,7 +2,7 @@ package com.geotrip.authservice.services;
 
 
 import com.geotrip.authservice.repositories.UserFinder;
-import com.geotrip.entityservice.models.Role;
+//import com.geotrip.entityservice.models.Role;
 //import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,26 +18,26 @@ import java.util.Optional;
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     private final List<UserFinder> userFinders;
-    private Role role;
+//    private Role role;
 
 //    @PostConstruct
 //    public void init() {
 //        System.out.println("UserFinders Injected: " + (userFinders != null ? userFinders.size() : "NULL"));
 //    }
 
-    public UserDetails loadUserByUsernameHelper(String username, String role) throws UsernameNotFoundException {
-        this.role = Role.valueOf(role);
-        return loadUserByUsername(username);
-    }
+//    public UserDetails loadUserByUsernameHelper(String username, String role) throws UsernameNotFoundException {
+//        this.role = Role.valueOf(role);
+//        return loadUserByUsername(username);
+//    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //here username is the user email
         return userFinders.stream()
-                .map(repositories -> repositories.findByEmailAndRole(username, role))
+                .map(repositories -> repositories.findByEmail(username))
                 .filter(Optional::isPresent)
                 .map(Optional::get)
                 .findFirst()
-                .orElseThrow(() -> new UsernameNotFoundException("User with the given email " +username+" and role " +role+" not found"));
+                .orElseThrow(() -> new UsernameNotFoundException("User with the given email " +username+" not found"));
     }
 }
