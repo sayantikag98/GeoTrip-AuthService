@@ -14,6 +14,8 @@ public interface AuthService {
 
     String authenticateUser(LoginRequestDto loginRequestDto, HttpServletResponse httpServletResponse);
 
+    String unauthenticateUser(HttpServletResponse httpServletResponse);
+
     UserDto validateToken(String token);
 
 }

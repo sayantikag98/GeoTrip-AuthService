@@ -157,6 +157,18 @@ public class AuthServiceImpl implements AuthService {
     }
 
 
+    public String unauthenticateUser(HttpServletResponse httpServletResponse) {
+        ResponseCookie responseCookie = ResponseCookie.from("authToken", "")
+                .httpOnly(true)
+                .secure(!environment.equals("dev"))
+                .path("/")
+                .maxAge(0)
+                .build();
+
+        httpServletResponse.setHeader("Set-Cookie", responseCookie.toString());
+        return "Successfully removed authToken";
+    }
+
     public UserDto validateToken(String token){
         System.out.println("Token: " + token);
         if(token != null && token.startsWith("Bearer ")) {

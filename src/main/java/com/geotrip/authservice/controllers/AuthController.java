@@ -34,8 +34,20 @@ public class AuthController {
         return ResponseEntity.ok(authService.authenticateUser(loginRequestDto, httpServletResponse));
     }
 
+    @PostMapping("/logout")
+    public ResponseEntity<String> logoutUser(HttpServletResponse httpServletResponse) {
+        return ResponseEntity.ok(authService.unauthenticateUser(httpServletResponse));
+    }
+
     @PostMapping("/validate")
     public ResponseEntity<UserDto> validateUser(@RequestHeader("Authorization") String token) {
         return ResponseEntity.ok(authService.validateToken(token));
+    }
+
+    //TODO: to be removed
+    @GetMapping("/websocket")
+    public ResponseEntity<String> setCookieForWebSocket(HttpServletResponse httpServletResponse) {
+        httpServletResponse.setHeader("Set-Cookie", "authToken=eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJrYXJ0aGlrQGdtYWlsLmNvbSIsInJvbGUiOiJST0xFX0RSSVZFUiIsImlhdCI6MTc0MjEzODA3NywiZXhwIjoxNzQyMTc0MDc3fQ.gKVljEnmpzzAi6BT8ger183Lycmuu8jV4gdwdAdWOo12H38DHVltGNBgBDYGZqJrq-RDbYPSODGyjdRbNH-NLg; Path=/; HttpOnly;");
+        return ResponseEntity.ok("Success");
     }
 }
